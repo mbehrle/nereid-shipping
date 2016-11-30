@@ -43,10 +43,6 @@ class Checkout:
         if not cart_sale.shipment_address:
             return redirect(url_for('nereid.checkout.shipping_address'))
 
-        if not cart_sale.weight:
-            # No weight, no shipping. Have fun !
-            return redirect(url_for('nereid.checkout.payment_method'))
-
         if request.method == 'POST' and request.form.get('carrier_json'):
             rate = json.loads(request.form.get('carrier_json'))
             rate.update({
